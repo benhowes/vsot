@@ -3,11 +3,9 @@
 """Tests for `html_formatter` package."""
 
 import pytest
-
 from click.testing import CliRunner
 
-from html_formatter import html_formatter
-from html_formatter import cli
+from html_formatter import cli, html_formatter
 
 
 @pytest.fixture
@@ -31,7 +29,7 @@ def test_command_line_interface():
     runner = CliRunner()
     result = runner.invoke(cli.main)
     assert result.exit_code == 0
-    assert 'html_formatter.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
+    assert "html_formatter.cli.main" in result.output
+    help_result = runner.invoke(cli.main, ["--help"])
     assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+    assert "--help  Show this message and exit." in help_result.output

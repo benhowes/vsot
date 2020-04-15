@@ -1,13 +1,15 @@
 """Console script for html_formatter."""
 import sys
+
 import click
 
 
 @click.command()
 def main(args=None):
     """Console script for html_formatter."""
-    click.echo("Replace this message by putting your code into "
-               "html_formatter.cli.main")
+    click.echo(
+        "Replace this message by putting your code into " "html_formatter.cli.main"
+    )
     click.echo("See click documentation at https://click.palletsprojects.com/")
     return 0
 
