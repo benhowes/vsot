@@ -28,6 +28,14 @@ parser grammar HTMLParser;
 
 options { tokenVocab=HTMLLexer; }
 
+template
+    : (TEMPLATE_TAG_OPEN | TEMPLATE_VARIABLE_OPEN | TEMPLATE_COMMENT_OPEN) templateContent+ TEMPLATE_TAG_CLOSE
+    ;
+
+templateContent
+    : TEMPLATE_CONTENT
+    ;
+
 htmlDocument
     : (scriptlet | SEA_WS)* xml? (scriptlet | SEA_WS)* dtd? (scriptlet | SEA_WS)* htmlElements*
     ;

@@ -127,3 +127,7 @@ class HTMLFormatter(HTMLParserVisitor):
     visitStyle = partialmethod(
         visitOtherLangBlock, tag_name="style", content="styleBody"
     )
+
+    def visitTemplate(self, ctx):
+        parts = [part.getText() for part in ctx.templateContent()]
+        self.output(" ".join(parts))

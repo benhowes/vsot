@@ -26,6 +26,18 @@
 
 lexer grammar  HTMLLexer;
 
+TEMPLATE_TAG_OPEN
+    : '{%' -> pushMode(TEMPLATE_TAG)
+    ;
+
+TEMPLATE_VARIABLE_OPEN
+    : '{{' -> pushMode(TEMPLATE_TAG)
+    ;
+
+TEMPLATE_COMMENT_OPEN
+    : '{#' -> pushMode(TEMPLATE_TAG)
+    ;
+
 HTML_COMMENT
     : '<!--' .*? '-->'
     ;
@@ -68,7 +80,25 @@ TAG_OPEN
     ;
 
 HTML_TEXT
-    : ~'<'+
+    :  ~[<{]? [{]? ~[<{#%]+  // Anything that's not a template/tag opening
+    ;
+
+
+mode TEMPLATE_TAG;
+
+TEMPLATE_TAG_CLOSE
+    : ('%}' | '}}' | '#}') -> popMode
+    ;
+
+// Anything that's not whitespace or `%}`
+// Lookahead would've been nice
+TEMPLATE_CONTENT
+    : ~[ \t\r\n%}]+
+    | ~[ \t\r\n%}]+ '%'+ ~'}' ~[ \t\r\n%}]
+    ;
+
+TEMPLATE_WS
+    : [ \t\r\n] -> skip
     ;
 
 //
