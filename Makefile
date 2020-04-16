@@ -83,3 +83,8 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+
+# Custom
+grammar:
+	antlr4 -Dlanguage=Python3 -no-listener -visitor html_formatter/antlr/HTMLParser.g4 html_formatter/antlr/HTMLLexer.g4

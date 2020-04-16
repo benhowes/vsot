@@ -10,10 +10,13 @@ homepage = "https://github.com/benhowes/html_formatter"
 authors = ["Ben Howes <ben@ben-howes.co.uk>"]
 readme = "README.rst"
 
+[tool.poetry.scripts]
+html-formatter = "html_formatter.cli:main"
+
 [tool.poetry.dependencies]
 python = ">=3.6.1"
 click = ">=7.0"
-antlr4-python3-runtime = "^4.8"
+antlr4-python3-runtime = "==4.7.2"
 pre-commit = "^2.2.0"
 black = "^19.10b0"
 isort = "^4.3.21"
@@ -26,3 +29,23 @@ tox = "==3.14.0"
 coverage = "*"
 Sphinx = "==1.8.5"
 pytest = "5"
+ipdb = "^0.13.2"
+
+
+[tool.black]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | setup
+  | html_formatter/antlr
+)/
+'''
