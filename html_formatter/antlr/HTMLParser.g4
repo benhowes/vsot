@@ -29,7 +29,7 @@ parser grammar HTMLParser;
 options { tokenVocab=HTMLLexer; }
 
 template
-    : (TEMPLATE_TAG_OPEN | TEMPLATE_VARIABLE_OPEN | TEMPLATE_COMMENT_OPEN) templateContent+ TEMPLATE_TAG_CLOSE
+    : openTag=(TEMPLATE_TAG_OPEN | TEMPLATE_VARIABLE_OPEN | TEMPLATE_COMMENT_OPEN) templateContent+ closeTag=TEMPLATE_TAG_CLOSE
     ;
 
 templateContent
@@ -37,7 +37,7 @@ templateContent
     ;
 
 htmlDocument
-    : (scriptlet | SEA_WS)* xml? (scriptlet | SEA_WS)* dtd? (scriptlet | SEA_WS)* htmlElements*
+    : (scriptlet | template | SEA_WS)* xml? (scriptlet | template | SEA_WS)* dtd? (scriptlet | template | SEA_WS)* htmlElements*
     ;
 
 htmlElements
@@ -51,6 +51,7 @@ htmlElement
     | scriptlet # RawTag
     | script # dummy
     | style # RawTag
+    | template # dummy
     ;
 
 htmlContent

@@ -3,6 +3,8 @@ from typing import Optional
 
 from .antlr.HTMLParserVisitor import HTMLParserVisitor
 
+from .constants import DJANGO_SCOPE_OPEN_TAGS, DJANGO_SCOPE_CLOSE_OPEN_TAGS
+
 
 class HTMLFormatter(HTMLParserVisitor):
     def __init__(self):
@@ -10,10 +12,10 @@ class HTMLFormatter(HTMLParserVisitor):
         self.indent_str = "  "
         self.max_line_len = 88
 
-    def enter(self):
+    def enter_scope(self):
         self.indent += 1
 
-    def exit(self):
+    def exit_scope(self):
         self.indent -= 1
 
     def resolve_indent(self):
@@ -56,9 +58,9 @@ class HTMLFormatter(HTMLParserVisitor):
             + len(self.resolve_indent())  # starting indent
         )
         if length > self.max_line_len:
-            self.enter()
+            self.enter_scope()
             join_str = f"\n{self.resolve_indent()}"
-            self.exit()
+            self.exit_scope()
             close_str = f"\n{self.resolve_indent()}{close_str}"
 
         self.output(f"<{join_str.join(open_tag_parts)}{close_str}")
@@ -70,16 +72,30 @@ class HTMLFormatter(HTMLParserVisitor):
         name = tag_name or ctx.htmlTagName()[1].getText()
         self.output(f"</{name}>")
 
-    # Visitors
+    def visit_lang_block(self, ctx, tag_name="script", content="scriptBody"):
+        # TODO: format other languages - maybe with jsbeautify
+        self.outputOpeningTag(ctx, tag_name=tag_name)
+        self.enter_scope()
+        for line in (
+            getattr(ctx, content)()
+            .getText()
+            .replace(f"</{tag_name}>", "")
+            .strip("\n\r")
+            .split("\n")
+        ):
+            self.output(line)
+        self.exit_scope()
+        self.outputClosingTag(ctx, tag_name=tag_name)
 
+    # Visitors - all named to match HTMLParserVisitor
     def visitTag(self, ctx):
         # The enter tag
         self.outputOpeningTag(ctx)
 
         # print the children - might have none
-        self.enter()
+        self.enter_scope()
         self.visitChildren(ctx)
-        self.exit()
+        self.exit_scope()
 
         # closing tag
         self.outputClosingTag(ctx)
@@ -93,6 +109,7 @@ class HTMLFormatter(HTMLParserVisitor):
         )
 
     def visitHtmlChardata(self, ctx):
+        # TODO: restructure whitespace
         text = ctx.HTML_TEXT()
         if text:
             self.output(text.getText())
@@ -106,28 +123,34 @@ class HTMLFormatter(HTMLParserVisitor):
     visitXml = visitRaw
     visitScriptlet = visitRaw
 
-    def visitOtherLangBlock(self, ctx, tag_name="script", content="scriptBody"):
-        """ TODO: format other languages """
-        self.outputOpeningTag(ctx, tag_name=tag_name)
-        self.enter()
-        for line in (
-            getattr(ctx, content)()
-            .getText()
-            .replace(f"</{tag_name}>", "")
-            .strip("\n\r")
-            .split("\n")
-        ):
-            self.output(line)
-        self.exit()
-        self.outputClosingTag(ctx, tag_name=tag_name)
-
     visitScript = partialmethod(
-        visitOtherLangBlock, tag_name="script", content="scriptBody"
+        visit_lang_block, tag_name="script", content="scriptBody"
     )
-    visitStyle = partialmethod(
-        visitOtherLangBlock, tag_name="style", content="styleBody"
-    )
+    visitStyle = partialmethod(visit_lang_block, tag_name="style", content="styleBody")
 
     def visitTemplate(self, ctx):
+        """ Doesn't currently do much other than normalise whitespace """
         parts = [part.getText() for part in ctx.templateContent()]
-        self.output(" ".join(parts))
+        command = parts[0]
+
+        # Logic for if this is entering/exiting a scope
+        # Unmatched commands are assumed to not affect scope
+        enters = False
+        if command in DJANGO_SCOPE_OPEN_TAGS:
+            enters = True
+
+        exits = False
+        if command.startswith("end"):
+            exits = True
+
+        if command in DJANGO_SCOPE_CLOSE_OPEN_TAGS:
+            exits = True
+            enters = True
+
+        if exits:
+            self.exit_scope()
+
+        self.output(f"{ctx.openTag.text} {' '.join(parts)} {ctx.closeTag.text}")
+
+        if enters:
+            self.enter_scope()
