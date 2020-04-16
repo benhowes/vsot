@@ -2,16 +2,23 @@
 import sys
 
 import click
+from antlr4 import FileStream, CommonTokenStream
+
+from .antlr.HTMLLexer import HTMLLexer
+from .antlr.HTMLParser import HTMLParser
+from .html_formatter import HTMLFormatter
 
 
-@click.command()
-def main(args=None):
-    """Console script for html_formatter."""
-    click.echo(
-        "Replace this message by putting your code into " "html_formatter.cli.main"
-    )
-    click.echo("See click documentation at https://click.palletsprojects.com/")
-    return 0
+def main():
+    input_stream = FileStream("bbc.html")
+    lexer = HTMLLexer(input_stream)
+    stream = CommonTokenStream(lexer)
+    parser = HTMLParser(stream)
+    tree = parser.htmlDocument()
+
+    # Visitator
+    visitor = HTMLFormatter()
+    visitor.visit(tree)
 
 
 if __name__ == "__main__":
