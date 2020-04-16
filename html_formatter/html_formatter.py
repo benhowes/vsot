@@ -1,3 +1,4 @@
+from functools import partialmethod
 from typing import Optional
 
 from .antlr.HTMLParserVisitor import HTMLParserVisitor
@@ -7,7 +8,6 @@ class HTMLFormatter(HTMLParserVisitor):
     def __init__(self):
         self.indent = 0
         self.indent_str = "  "
-        self.continue_line = False
         self.max_line_len = 88
 
     def enter(self):
@@ -19,19 +19,8 @@ class HTMLFormatter(HTMLParserVisitor):
     def resolve_indent(self):
         return self.indent_str * self.indent
 
-    def output(self, content, new_line=True):
-
-        # TODO: This may not need anything so complex
-        if not self.continue_line:
-            print(f"{self.resolve_indent()}", end="", sep="")
-
-        end = "\n"
-        self.continue_line = False
-        if not new_line:
-            end = ""
-            self.continue_line = True
-
-        print(content, end=end, sep="")
+    def output(self, content):
+        print(f"{self.resolve_indent()}{content}")
 
     def outputOpeningTag(self, ctx, tag_name: Optional[str] = None):
         """
@@ -53,10 +42,9 @@ class HTMLFormatter(HTMLParserVisitor):
                 name = name.getText()
 
         open_tag_parts = [name]
-        if hasattr(ctx, "htmlAttribute"):
-            open_tag_parts += [
-                self._visitHtmlAttribute(attr) for attr in ctx.htmlAttribute()
-            ]
+        open_tag_parts += [
+            self._visitHtmlAttribute(attr) for attr in ctx.htmlAttribute()
+        ]
 
         join_str = " "
         close_str = "/>" if is_self_closing else ">"
@@ -112,29 +100,30 @@ class HTMLFormatter(HTMLParserVisitor):
     def visitRaw(self, ctx):
         self.output(ctx.getText())
 
-    def visitScript(self, ctx, tag_name="script"):
-        self.outputOpeningTag(ctx, tag_name=tag_name)
-        self.enter()
-        for line in (
-            ctx.scriptBody().getText().rstrip("</script>").strip("\n\r").split("\n")
-        ):
-            self.output(line)
-        self.exit()
-        self.outputClosingTag(ctx, tag_name=tag_name)
-
-    def visitStyle(self, ctx):
-        tag_name = "style"
-        self.outputOpeningTag(ctx, tag_name=tag_name)
-        self.enter()
-        for line in (
-            ctx.styleBody().getText().rstrip("</style>").strip("\n\r").split("\n")
-        ):
-            self.output(line)
-        self.exit()
-        self.outputClosingTag(ctx, tag_name=tag_name)
-
     visitHtmlComment = visitRaw
     visitXhtmlCDATA = visitRaw
     visitDtd = visitRaw
     visitXml = visitRaw
     visitScriptlet = visitRaw
+
+    def visitOtherLangBlock(self, ctx, tag_name="script", content="scriptBody"):
+        """ TODO: format other languages """
+        self.outputOpeningTag(ctx, tag_name=tag_name)
+        self.enter()
+        for line in (
+            getattr(ctx, content)()
+            .getText()
+            .replace(f"</{tag_name}>", "")
+            .strip("\n\r")
+            .split("\n")
+        ):
+            self.output(line)
+        self.exit()
+        self.outputClosingTag(ctx, tag_name=tag_name)
+
+    visitScript = partialmethod(
+        visitOtherLangBlock, tag_name="script", content="scriptBody"
+    )
+    visitStyle = partialmethod(
+        visitOtherLangBlock, tag_name="style", content="styleBody"
+    )

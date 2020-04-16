@@ -56,11 +56,11 @@ SEA_WS
     ;
 
 SCRIPT_OPEN
-    : '<script' .*? '>' ->pushMode(SCRIPT)
+    : '<script' -> pushMode(SCRIPT), pushMode(TAG)
     ;
 
 STYLE_OPEN
-    : '<style' .*? '>'  ->pushMode(STYLE)
+    : '<style' -> pushMode(STYLE), pushMode(TAG)
     ;
 
 TAG_OPEN

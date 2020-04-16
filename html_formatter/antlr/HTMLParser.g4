@@ -98,7 +98,7 @@ scriptlet
     ;
 
 script
-    : SCRIPT_OPEN scriptBody
+    : SCRIPT_OPEN htmlAttribute* TAG_CLOSE scriptBody
     ;
 
 scriptBody
@@ -107,7 +107,7 @@ scriptBody
     ;
 
 style
-    : STYLE_OPEN styleBody
+    : STYLE_OPEN htmlAttribute* TAG_CLOSE styleBody
     ;
 
 styleBody

@@ -8,7 +8,7 @@ import sys
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31")
-        buf.write("\u00b6\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\u00c4\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\3\2\3\2\7\2+\n\2\f\2\16\2.\13\2\3\2\5\2\61")
@@ -23,58 +23,66 @@ def serializedATN():
         buf.write("\5\u008d\13\5\3\6\3\6\3\6\3\6\3\6\5\6\u0094\n\6\3\7\3")
         buf.write("\7\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\5\13\u00a0\n\13\3")
         buf.write("\f\3\f\3\r\3\r\3\16\3\16\3\17\3\17\3\20\3\20\3\21\3\21")
-        buf.write("\3\21\3\22\3\22\3\23\3\23\3\23\3\24\3\24\3\24\2\2\25\2")
-        buf.write("\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&\2\6\4\2\t\t")
-        buf.write("\r\r\3\2\3\4\3\2\24\25\3\2\26\27\2\u00bc\2,\3\2\2\2\4")
-        buf.write("L\3\2\2\2\6|\3\2\2\2\b\177\3\2\2\2\n\u0093\3\2\2\2\f\u0095")
-        buf.write("\3\2\2\2\16\u0097\3\2\2\2\20\u0099\3\2\2\2\22\u009b\3")
-        buf.write("\2\2\2\24\u009f\3\2\2\2\26\u00a1\3\2\2\2\30\u00a3\3\2")
-        buf.write("\2\2\32\u00a5\3\2\2\2\34\u00a7\3\2\2\2\36\u00a9\3\2\2")
-        buf.write("\2 \u00ab\3\2\2\2\"\u00ae\3\2\2\2$\u00b0\3\2\2\2&\u00b3")
-        buf.write("\3\2\2\2(+\5\36\20\2)+\7\t\2\2*(\3\2\2\2*)\3\2\2\2+.\3")
-        buf.write("\2\2\2,*\3\2\2\2,-\3\2\2\2-\60\3\2\2\2.,\3\2\2\2/\61\5")
-        buf.write("\34\17\2\60/\3\2\2\2\60\61\3\2\2\2\61\66\3\2\2\2\62\65")
-        buf.write("\5\36\20\2\63\65\7\t\2\2\64\62\3\2\2\2\64\63\3\2\2\2\65")
-        buf.write("8\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67:\3\2\2\28\66")
-        buf.write("\3\2\2\29;\5\32\16\2:9\3\2\2\2:;\3\2\2\2;@\3\2\2\2<?\5")
-        buf.write("\36\20\2=?\7\t\2\2><\3\2\2\2>=\3\2\2\2?B\3\2\2\2@>\3\2")
-        buf.write("\2\2@A\3\2\2\2AF\3\2\2\2B@\3\2\2\2CE\5\4\3\2DC\3\2\2\2")
-        buf.write("EH\3\2\2\2FD\3\2\2\2FG\3\2\2\2G\3\3\2\2\2HF\3\2\2\2IK")
-        buf.write("\5\24\13\2JI\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2\2\2MO\3")
-        buf.write("\2\2\2NL\3\2\2\2OS\5\6\4\2PR\5\24\13\2QP\3\2\2\2RU\3\2")
-        buf.write("\2\2SQ\3\2\2\2ST\3\2\2\2T\5\3\2\2\2US\3\2\2\2VW\7\f\2")
-        buf.write("\2W[\5\20\t\2XZ\5\n\6\2YX\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2")
-        buf.write("[\\\3\2\2\2\\^\3\2\2\2][\3\2\2\2^_\7\16\2\2_`\5\b\5\2")
-        buf.write("`a\7\f\2\2ab\7\20\2\2bc\5\20\t\2cd\7\16\2\2d}\3\2\2\2")
-        buf.write("ef\7\f\2\2fj\5\20\t\2gi\5\n\6\2hg\3\2\2\2il\3\2\2\2jh")
-        buf.write("\3\2\2\2jk\3\2\2\2km\3\2\2\2lj\3\2\2\2mn\7\17\2\2n}\3")
-        buf.write("\2\2\2op\7\f\2\2pt\5\20\t\2qs\5\n\6\2rq\3\2\2\2sv\3\2")
-        buf.write("\2\2tr\3\2\2\2tu\3\2\2\2uw\3\2\2\2vt\3\2\2\2wx\7\16\2")
-        buf.write("\2x}\3\2\2\2y}\5\36\20\2z}\5 \21\2{}\5$\23\2|V\3\2\2\2")
-        buf.write("|e\3\2\2\2|o\3\2\2\2|y\3\2\2\2|z\3\2\2\2|{\3\2\2\2}\7")
-        buf.write("\3\2\2\2~\u0080\5\22\n\2\177~\3\2\2\2\177\u0080\3\2\2")
-        buf.write("\2\u0080\u008b\3\2\2\2\u0081\u0085\5\6\4\2\u0082\u0085")
-        buf.write("\5\30\r\2\u0083\u0085\5\26\f\2\u0084\u0081\3\2\2\2\u0084")
-        buf.write("\u0082\3\2\2\2\u0084\u0083\3\2\2\2\u0085\u0087\3\2\2\2")
-        buf.write("\u0086\u0088\5\22\n\2\u0087\u0086\3\2\2\2\u0087\u0088")
-        buf.write("\3\2\2\2\u0088\u008a\3\2\2\2\u0089\u0084\3\2\2\2\u008a")
-        buf.write("\u008d\3\2\2\2\u008b\u0089\3\2\2\2\u008b\u008c\3\2\2\2")
-        buf.write("\u008c\t\3\2\2\2\u008d\u008b\3\2\2\2\u008e\u008f\5\f\7")
-        buf.write("\2\u008f\u0090\7\21\2\2\u0090\u0091\5\16\b\2\u0091\u0094")
-        buf.write("\3\2\2\2\u0092\u0094\5\f\7\2\u0093\u008e\3\2\2\2\u0093")
-        buf.write("\u0092\3\2\2\2\u0094\13\3\2\2\2\u0095\u0096\7\22\2\2\u0096")
-        buf.write("\r\3\2\2\2\u0097\u0098\7\30\2\2\u0098\17\3\2\2\2\u0099")
-        buf.write("\u009a\7\22\2\2\u009a\21\3\2\2\2\u009b\u009c\t\2\2\2\u009c")
-        buf.write("\23\3\2\2\2\u009d\u00a0\5\26\f\2\u009e\u00a0\7\t\2\2\u009f")
+        buf.write("\7\21\u00ae\n\21\f\21\16\21\u00b1\13\21\3\21\3\21\3\21")
+        buf.write("\3\22\3\22\3\23\3\23\7\23\u00ba\n\23\f\23\16\23\u00bd")
+        buf.write("\13\23\3\23\3\23\3\23\3\24\3\24\3\24\2\2\25\2\4\6\b\n")
+        buf.write("\f\16\20\22\24\26\30\32\34\36 \"$&\2\6\4\2\t\t\r\r\3\2")
+        buf.write("\3\4\3\2\24\25\3\2\26\27\2\u00cc\2,\3\2\2\2\4L\3\2\2\2")
+        buf.write("\6|\3\2\2\2\b\177\3\2\2\2\n\u0093\3\2\2\2\f\u0095\3\2")
+        buf.write("\2\2\16\u0097\3\2\2\2\20\u0099\3\2\2\2\22\u009b\3\2\2")
+        buf.write("\2\24\u009f\3\2\2\2\26\u00a1\3\2\2\2\30\u00a3\3\2\2\2")
+        buf.write("\32\u00a5\3\2\2\2\34\u00a7\3\2\2\2\36\u00a9\3\2\2\2 \u00ab")
+        buf.write("\3\2\2\2\"\u00b5\3\2\2\2$\u00b7\3\2\2\2&\u00c1\3\2\2\2")
+        buf.write("(+\5\36\20\2)+\7\t\2\2*(\3\2\2\2*)\3\2\2\2+.\3\2\2\2,")
+        buf.write("*\3\2\2\2,-\3\2\2\2-\60\3\2\2\2.,\3\2\2\2/\61\5\34\17")
+        buf.write("\2\60/\3\2\2\2\60\61\3\2\2\2\61\66\3\2\2\2\62\65\5\36")
+        buf.write("\20\2\63\65\7\t\2\2\64\62\3\2\2\2\64\63\3\2\2\2\658\3")
+        buf.write("\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67:\3\2\2\28\66\3\2")
+        buf.write("\2\29;\5\32\16\2:9\3\2\2\2:;\3\2\2\2;@\3\2\2\2<?\5\36")
+        buf.write("\20\2=?\7\t\2\2><\3\2\2\2>=\3\2\2\2?B\3\2\2\2@>\3\2\2")
+        buf.write("\2@A\3\2\2\2AF\3\2\2\2B@\3\2\2\2CE\5\4\3\2DC\3\2\2\2E")
+        buf.write("H\3\2\2\2FD\3\2\2\2FG\3\2\2\2G\3\3\2\2\2HF\3\2\2\2IK\5")
+        buf.write("\24\13\2JI\3\2\2\2KN\3\2\2\2LJ\3\2\2\2LM\3\2\2\2MO\3\2")
+        buf.write("\2\2NL\3\2\2\2OS\5\6\4\2PR\5\24\13\2QP\3\2\2\2RU\3\2\2")
+        buf.write("\2SQ\3\2\2\2ST\3\2\2\2T\5\3\2\2\2US\3\2\2\2VW\7\f\2\2")
+        buf.write("W[\5\20\t\2XZ\5\n\6\2YX\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\")
+        buf.write("\3\2\2\2\\^\3\2\2\2][\3\2\2\2^_\7\16\2\2_`\5\b\5\2`a\7")
+        buf.write("\f\2\2ab\7\20\2\2bc\5\20\t\2cd\7\16\2\2d}\3\2\2\2ef\7")
+        buf.write("\f\2\2fj\5\20\t\2gi\5\n\6\2hg\3\2\2\2il\3\2\2\2jh\3\2")
+        buf.write("\2\2jk\3\2\2\2km\3\2\2\2lj\3\2\2\2mn\7\17\2\2n}\3\2\2")
+        buf.write("\2op\7\f\2\2pt\5\20\t\2qs\5\n\6\2rq\3\2\2\2sv\3\2\2\2")
+        buf.write("tr\3\2\2\2tu\3\2\2\2uw\3\2\2\2vt\3\2\2\2wx\7\16\2\2x}")
+        buf.write("\3\2\2\2y}\5\36\20\2z}\5 \21\2{}\5$\23\2|V\3\2\2\2|e\3")
+        buf.write("\2\2\2|o\3\2\2\2|y\3\2\2\2|z\3\2\2\2|{\3\2\2\2}\7\3\2")
+        buf.write("\2\2~\u0080\5\22\n\2\177~\3\2\2\2\177\u0080\3\2\2\2\u0080")
+        buf.write("\u008b\3\2\2\2\u0081\u0085\5\6\4\2\u0082\u0085\5\30\r")
+        buf.write("\2\u0083\u0085\5\26\f\2\u0084\u0081\3\2\2\2\u0084\u0082")
+        buf.write("\3\2\2\2\u0084\u0083\3\2\2\2\u0085\u0087\3\2\2\2\u0086")
+        buf.write("\u0088\5\22\n\2\u0087\u0086\3\2\2\2\u0087\u0088\3\2\2")
+        buf.write("\2\u0088\u008a\3\2\2\2\u0089\u0084\3\2\2\2\u008a\u008d")
+        buf.write("\3\2\2\2\u008b\u0089\3\2\2\2\u008b\u008c\3\2\2\2\u008c")
+        buf.write("\t\3\2\2\2\u008d\u008b\3\2\2\2\u008e\u008f\5\f\7\2\u008f")
+        buf.write("\u0090\7\21\2\2\u0090\u0091\5\16\b\2\u0091\u0094\3\2\2")
+        buf.write("\2\u0092\u0094\5\f\7\2\u0093\u008e\3\2\2\2\u0093\u0092")
+        buf.write("\3\2\2\2\u0094\13\3\2\2\2\u0095\u0096\7\22\2\2\u0096\r")
+        buf.write("\3\2\2\2\u0097\u0098\7\30\2\2\u0098\17\3\2\2\2\u0099\u009a")
+        buf.write("\7\22\2\2\u009a\21\3\2\2\2\u009b\u009c\t\2\2\2\u009c\23")
+        buf.write("\3\2\2\2\u009d\u00a0\5\26\f\2\u009e\u00a0\7\t\2\2\u009f")
         buf.write("\u009d\3\2\2\2\u009f\u009e\3\2\2\2\u00a0\25\3\2\2\2\u00a1")
         buf.write("\u00a2\t\3\2\2\u00a2\27\3\2\2\2\u00a3\u00a4\7\6\2\2\u00a4")
         buf.write("\31\3\2\2\2\u00a5\u00a6\7\7\2\2\u00a6\33\3\2\2\2\u00a7")
         buf.write("\u00a8\7\5\2\2\u00a8\35\3\2\2\2\u00a9\u00aa\7\b\2\2\u00aa")
-        buf.write("\37\3\2\2\2\u00ab\u00ac\7\n\2\2\u00ac\u00ad\5\"\22\2\u00ad")
-        buf.write("!\3\2\2\2\u00ae\u00af\t\4\2\2\u00af#\3\2\2\2\u00b0\u00b1")
-        buf.write("\7\13\2\2\u00b1\u00b2\5&\24\2\u00b2%\3\2\2\2\u00b3\u00b4")
-        buf.write("\t\5\2\2\u00b4\'\3\2\2\2\27*,\60\64\66:>@FLS[jt|\177\u0084")
-        buf.write("\u0087\u008b\u0093\u009f")
+        buf.write("\37\3\2\2\2\u00ab\u00af\7\n\2\2\u00ac\u00ae\5\n\6\2\u00ad")
+        buf.write("\u00ac\3\2\2\2\u00ae\u00b1\3\2\2\2\u00af\u00ad\3\2\2\2")
+        buf.write("\u00af\u00b0\3\2\2\2\u00b0\u00b2\3\2\2\2\u00b1\u00af\3")
+        buf.write("\2\2\2\u00b2\u00b3\7\16\2\2\u00b3\u00b4\5\"\22\2\u00b4")
+        buf.write("!\3\2\2\2\u00b5\u00b6\t\4\2\2\u00b6#\3\2\2\2\u00b7\u00bb")
+        buf.write("\7\13\2\2\u00b8\u00ba\5\n\6\2\u00b9\u00b8\3\2\2\2\u00ba")
+        buf.write("\u00bd\3\2\2\2\u00bb\u00b9\3\2\2\2\u00bb\u00bc\3\2\2\2")
+        buf.write("\u00bc\u00be\3\2\2\2\u00bd\u00bb\3\2\2\2\u00be\u00bf\7")
+        buf.write("\16\2\2\u00bf\u00c0\5&\24\2\u00c0%\3\2\2\2\u00c1\u00c2")
+        buf.write("\t\5\2\2\u00c2\'\3\2\2\2\31*,\60\64\66:>@FLS[jt|\177\u0084")
+        buf.write("\u0087\u008b\u0093\u009f\u00af\u00bb")
         return buf.getvalue()
 
 
@@ -1199,8 +1207,18 @@ class HTMLParser ( Parser ):
         def SCRIPT_OPEN(self):
             return self.getToken(HTMLParser.SCRIPT_OPEN, 0)
 
+        def TAG_CLOSE(self):
+            return self.getToken(HTMLParser.TAG_CLOSE, 0)
+
         def scriptBody(self):
             return self.getTypedRuleContext(HTMLParser.ScriptBodyContext,0)
+
+
+        def htmlAttribute(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(HTMLParser.HtmlAttributeContext)
+            else:
+                return self.getTypedRuleContext(HTMLParser.HtmlAttributeContext,i)
 
 
         def getRuleIndex(self):
@@ -1219,11 +1237,24 @@ class HTMLParser ( Parser ):
 
         localctx = HTMLParser.ScriptContext(self, self._ctx, self.state)
         self.enterRule(localctx, 30, self.RULE_script)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 169
             self.match(HTMLParser.SCRIPT_OPEN)
-            self.state = 170
+            self.state = 173
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while _la==HTMLParser.TAG_NAME:
+                self.state = 170
+                self.htmlAttribute()
+                self.state = 175
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
+            self.state = 176
+            self.match(HTMLParser.TAG_CLOSE)
+            self.state = 177
             self.scriptBody()
         except RecognitionException as re:
             localctx.exception = re
@@ -1264,7 +1295,7 @@ class HTMLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 172
+            self.state = 179
             _la = self._input.LA(1)
             if not(_la==HTMLParser.SCRIPT_BODY or _la==HTMLParser.SCRIPT_SHORT_BODY):
                 self._errHandler.recoverInline(self)
@@ -1288,8 +1319,18 @@ class HTMLParser ( Parser ):
         def STYLE_OPEN(self):
             return self.getToken(HTMLParser.STYLE_OPEN, 0)
 
+        def TAG_CLOSE(self):
+            return self.getToken(HTMLParser.TAG_CLOSE, 0)
+
         def styleBody(self):
             return self.getTypedRuleContext(HTMLParser.StyleBodyContext,0)
+
+
+        def htmlAttribute(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(HTMLParser.HtmlAttributeContext)
+            else:
+                return self.getTypedRuleContext(HTMLParser.HtmlAttributeContext,i)
 
 
         def getRuleIndex(self):
@@ -1308,11 +1349,24 @@ class HTMLParser ( Parser ):
 
         localctx = HTMLParser.StyleContext(self, self._ctx, self.state)
         self.enterRule(localctx, 34, self.RULE_style)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 174
+            self.state = 181
             self.match(HTMLParser.STYLE_OPEN)
-            self.state = 175
+            self.state = 185
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while _la==HTMLParser.TAG_NAME:
+                self.state = 182
+                self.htmlAttribute()
+                self.state = 187
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
+            self.state = 188
+            self.match(HTMLParser.TAG_CLOSE)
+            self.state = 189
             self.styleBody()
         except RecognitionException as re:
             localctx.exception = re
@@ -1353,7 +1407,7 @@ class HTMLParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 177
+            self.state = 191
             _la = self._input.LA(1)
             if not(_la==HTMLParser.STYLE_BODY or _la==HTMLParser.STYLE_SHORT_BODY):
                 self._errHandler.recoverInline(self)
