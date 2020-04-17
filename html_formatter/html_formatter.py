@@ -1,4 +1,5 @@
 from functools import partialmethod
+from pprint import pformat
 from typing import Optional
 
 from .antlr.HTMLParserVisitor import HTMLParserVisitor
@@ -21,8 +22,8 @@ class HTMLFormatter(HTMLParserVisitor):
     def resolve_indent(self):
         return self.indent_str * self.indent
 
-    def output(self, content):
-        print(f"{self.resolve_indent()}{content}")
+    def output(self, content, add_indent=True):
+        print(f"{self.resolve_indent() if add_indent else ''}{content}")
 
     def outputOpeningTag(self, ctx, tag_name: Optional[str] = None):
         """
@@ -108,11 +109,37 @@ class HTMLFormatter(HTMLParserVisitor):
             f"{ctx.htmlAttributeName().getText()}={ctx.htmlAttributeValue().getText()}"
         )
 
+    def _reflow_html_text(self, text):
+        """
+        Reflow text, accounting for the required indent for the current scope.
+        """
+        indent_size = len(self.resolve_indent())
+        width = self.max_line_len - indent_size
+        parts = text.split()
+
+        while parts:
+            # Consume unbroken chunks
+            line = ""
+            current_length = 0
+
+            while current_length < width and parts:
+                # always consume the first chunk of a line, then
+                # append current chunk if it will fit within the `width`
+                # or break to yield the line
+                if current_length and (current_length + len(parts[0]) + 1) > width:
+                    break
+                line += " " + parts.pop(0)
+                current_length = len(line)
+
+            yield line.strip()
+
     def visitHtmlChardata(self, ctx):
-        # TODO: restructure whitespace
         text = ctx.HTML_TEXT()
-        if text:
-            self.output(text.getText())
+        if not text:
+            return
+
+        for line in self._reflow_html_text(text.getText()):
+            self.output(line)
 
     def visitRaw(self, ctx):
         self.output(ctx.getText())

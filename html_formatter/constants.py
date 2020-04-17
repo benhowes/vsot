@@ -1,12 +1,12 @@
 DJANGO_SCOPE_OPEN_TAGS = (
-    "if",
-    "while",
-    "for",
-    "block",
     "autoescape",
+    "block",
     "comment",
     "filter",
+    "for",
+    "if",
     "ifchanged",
+    "while",
     "with",
 )
 
