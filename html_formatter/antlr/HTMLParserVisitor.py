@@ -9,8 +9,18 @@ else:
 
 class HTMLParserVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by HTMLParser#template.
-    def visitTemplate(self, ctx:HTMLParser.TemplateContext):
+    # Visit a parse tree produced by HTMLParser#templateTag.
+    def visitTemplateTag(self, ctx:HTMLParser.TemplateTagContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by HTMLParser#templateComment.
+    def visitTemplateComment(self, ctx:HTMLParser.TemplateCommentContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by HTMLParser#templateVariable.
+    def visitTemplateVariable(self, ctx:HTMLParser.TemplateVariableContext):
         return self.visitChildren(ctx)
 
 

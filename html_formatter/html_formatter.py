@@ -9,9 +9,12 @@ from .constants import DJANGO_SCOPE_OPEN_TAGS, DJANGO_SCOPE_CLOSE_OPEN_TAGS
 
 class HTMLFormatter(HTMLParserVisitor):
     def __init__(self):
-        self.indent = 0
+        # Settings
         self.indent_str = "  "
         self.max_line_len = 88
+        # State
+        self.indent = 0
+        self.current_line_len = 0
 
     def enter_scope(self):
         self.indent += 1
@@ -22,8 +25,33 @@ class HTMLFormatter(HTMLParserVisitor):
     def resolve_indent(self):
         return self.indent_str * self.indent
 
-    def output(self, content, add_indent=True):
-        print(f"{self.resolve_indent() if add_indent else ''}{content}")
+    def output(self, content, is_block=True):
+        """
+        Output printing either prints a block (content starting and ending with a
+        newline) or attempts to continue printing on the current line if the
+        content is narrow enough.
+        """
+        if (self.current_line_len and is_block) or (
+            self.current_line_len + len(content) > self.max_line_len
+        ):
+            # content requires newline, either because it's a block or because
+            # it would overflow the desired line length.
+            print("\n", end="")  # Newline
+            self.current_line_len = 0
+
+        if not self.current_line_len:
+            print(f"{self.resolve_indent()}", end="", sep="")
+        else:
+            print(" ", end="", sep="")
+
+        if is_block:
+            end = "\n"
+            self.current_line_len = 0
+        else:
+            end = ""
+            self.current_line_len += len(content)
+
+        print(content, end=end, sep="")
 
     def outputOpeningTag(self, ctx, tag_name: Optional[str] = None):
         """
@@ -114,24 +142,34 @@ class HTMLFormatter(HTMLParserVisitor):
         Reflow text, accounting for the required indent for the current scope.
         """
         indent_size = len(self.resolve_indent())
-        width = self.max_line_len - indent_size
         parts = text.split()
 
         while parts:
-            # Consume unbroken chunks
-            line = ""
-            current_length = 0
+            # Width looks at the current line width since html text is not
+            # printed as a block
+            if (
+                # is contining a line
+                self.current_line_len
+                # the first chunk is not too wide
+                and self.current_line_len + len(parts[0]) <= self.max_line_len
+            ):
+                target_width = self.max_line_len - self.current_line_len
+            else:
+                target_width = self.max_line_len - indent_size
 
-            while current_length < width and parts:
+            content_buffer = ""
+            current_len = 0
+
+            while current_len < target_width and parts:
                 # always consume the first chunk of a line, then
                 # append current chunk if it will fit within the `width`
                 # or break to yield the line
-                if current_length and (current_length + len(parts[0]) + 1) > width:
+                if current_len and (current_len + len(parts[0]) + 1) > target_width:
                     break
-                line += " " + parts.pop(0)
-                current_length = len(line)
+                content_buffer += " " + parts.pop(0)
+                current_len = len(content_buffer)
 
-            yield line.strip()
+            yield content_buffer.strip()
 
     def visitHtmlChardata(self, ctx):
         text = ctx.HTML_TEXT()
@@ -139,7 +177,7 @@ class HTMLFormatter(HTMLParserVisitor):
             return
 
         for line in self._reflow_html_text(text.getText()):
-            self.output(line)
+            self.output(line, is_block=False)
 
     def visitRaw(self, ctx):
         self.output(ctx.getText())
@@ -155,7 +193,7 @@ class HTMLFormatter(HTMLParserVisitor):
     )
     visitStyle = partialmethod(visit_lang_block, tag_name="style", content="styleBody")
 
-    def visitTemplate(self, ctx):
+    def visitTemplateTag(self, ctx):
         """ Doesn't currently do much other than normalise whitespace """
         parts = [part.getText() for part in ctx.templateContent()]
         command = parts[0]
@@ -181,3 +219,9 @@ class HTMLFormatter(HTMLParserVisitor):
 
         if enters:
             self.enter_scope()
+
+    visitTemplateComment = visitTemplateTag
+
+    def visitTemplateVariable(self, ctx):
+        parts = [part.getText() for part in ctx.templateContent()]
+        self.output(f"{{{{ {' '.join(parts)} }}}}", is_block=False)
