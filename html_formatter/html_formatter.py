@@ -12,6 +12,7 @@ class HTMLFormatter(HTMLParserVisitor):
         # Settings
         self.indent_str = "  "
         self.max_line_len = 88
+        self.sort_html_attributes = True
         # State
         self.indent = 0
         self.current_line_len = 0
@@ -53,6 +54,11 @@ class HTMLFormatter(HTMLParserVisitor):
 
         print(content, end=end, sep="")
 
+    def _visit_html_attribute(self, ctx):
+        return (
+            f"{ctx.htmlAttributeName().getText()}={ctx.htmlAttributeValue().getText()}"
+        )
+
     def outputOpeningTag(self, ctx, tag_name: Optional[str] = None):
         """
             tag_name: If the tag name should not be detected (e.g. for script)
@@ -72,10 +78,15 @@ class HTMLFormatter(HTMLParserVisitor):
                 is_self_closing = True
                 name = name.getText()
 
-        open_tag_parts = [name]
-        open_tag_parts += [
-            self._visitHtmlAttribute(attr) for attr in ctx.htmlAttribute()
+        open_tag_parts = [
+            self._visit_html_attribute(attr) for attr in ctx.htmlAttribute()
         ]
+        if self.sort_html_attributes:
+            # Alphabetise the attributes
+            open_tag_parts.sort()
+
+        # The tag name
+        open_tag_parts.insert(0, name)
 
         join_str = " "
         close_str = "/>" if is_self_closing else ">"
@@ -131,11 +142,6 @@ class HTMLFormatter(HTMLParserVisitor):
 
     def visitSelfClosingTag(self, ctx):
         self.outputOpeningTag(ctx)
-
-    def _visitHtmlAttribute(self, ctx):
-        return (
-            f"{ctx.htmlAttributeName().getText()}={ctx.htmlAttributeValue().getText()}"
-        )
 
     def _reflow_html_text(self, text):
         """
