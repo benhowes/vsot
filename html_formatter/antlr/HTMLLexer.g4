@@ -35,7 +35,11 @@ TEMPLATE_VARIABLE_OPEN
     ;
 
 TEMPLATE_COMMENT_OPEN
-    : '{#' -> pushMode(TEMPLATE_TAG)
+    : '{#'
+    ;
+
+TEMPLATE_COMMENT_CLOSE
+    : '#}'
     ;
 
 HTML_COMMENT
@@ -80,14 +84,16 @@ TAG_OPEN
     ;
 
 HTML_TEXT
-    :  ~[<{]? [{]? ~[<{#%]+  // Anything that's not a template/tag opening
+    :  ~[<{#]+
+    | ~[<{#]* '#' ~[}<{#]+
+    | ~[<{#]* '{' ~[%<{#]+
     ;
 
 
 mode TEMPLATE_TAG;
 
 TEMPLATE_TAG_CLOSE
-    : ('%}' | '}}' | '#}') -> popMode
+    : ('%}' | '}}') -> popMode
     ;
 
 // Anything that's not whitespace or `%}`

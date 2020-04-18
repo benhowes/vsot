@@ -4,7 +4,7 @@ from typing import Optional
 
 from .antlr.HTMLParserVisitor import HTMLParserVisitor
 
-from .constants import DJANGO_SCOPE_OPEN_TAGS, DJANGO_SCOPE_CLOSE_OPEN_TAGS
+from .constants import TEMPLATE_SCOPE_OPEN_TAGS, TEMPLATE_SCOPE_CLOSE_OPEN_TAGS
 
 
 class HTMLFormatter(HTMLParserVisitor):
@@ -70,9 +70,7 @@ class HTMLFormatter(HTMLParserVisitor):
         if not name:
             # Tags with a closing tag have 2 instances of htmlTagName
             name = ctx.htmlTagName()
-            if isinstance(
-                name, list
-            ):  # self closing does not have a second occurance of a name2
+            if isinstance(name, list):
                 name = name[0].getText()
             else:
                 is_self_closing = True
@@ -207,14 +205,14 @@ class HTMLFormatter(HTMLParserVisitor):
         # Logic for if this is entering/exiting a scope
         # Unmatched commands are assumed to not affect scope
         enters = False
-        if command in DJANGO_SCOPE_OPEN_TAGS:
+        if command in TEMPLATE_SCOPE_OPEN_TAGS:
             enters = True
 
         exits = False
         if command.startswith("end"):
             exits = True
 
-        if command in DJANGO_SCOPE_CLOSE_OPEN_TAGS:
+        if command in TEMPLATE_SCOPE_CLOSE_OPEN_TAGS:
             exits = True
             enters = True
 
@@ -226,7 +224,13 @@ class HTMLFormatter(HTMLParserVisitor):
         if enters:
             self.enter_scope()
 
-    visitTemplateComment = visitTemplateTag
+    def visitTemplateComment(self, ctx):
+        """ In jinja2 these are block comments, in django they are single line """
+        self.output("{#")
+        self.enter_scope()
+        self.visitChildren(ctx)
+        self.exit_scope()
+        self.output("#}")
 
     def visitTemplateVariable(self, ctx):
         parts = [part.getText() for part in ctx.templateContent()]

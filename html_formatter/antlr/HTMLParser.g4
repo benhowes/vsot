@@ -35,7 +35,7 @@ templateTag
     ;
 
 templateComment
-    : openTag=TEMPLATE_COMMENT_OPEN templateContent+ closeTag=TEMPLATE_TAG_CLOSE
+    : TEMPLATE_COMMENT_OPEN htmlContent TEMPLATE_COMMENT_CLOSE
     ;
 
 templateVariable

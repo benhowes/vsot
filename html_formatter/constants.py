@@ -1,4 +1,4 @@
-DJANGO_SCOPE_OPEN_TAGS = (
+TEMPLATE_SCOPE_OPEN_TAGS = (
     "autoescape",
     "block",
     "comment",
@@ -8,6 +8,10 @@ DJANGO_SCOPE_OPEN_TAGS = (
     "ifchanged",
     "while",
     "with",
+    # Jinja only
+    "macro",
+    "call",
+    # "set" - this is context dependent, so would need a special case :(
 )
 
-DJANGO_SCOPE_CLOSE_OPEN_TAGS = ("elif", "empty")
+TEMPLATE_SCOPE_CLOSE_OPEN_TAGS = ("elif", "empty")
