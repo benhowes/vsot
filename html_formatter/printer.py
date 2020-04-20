@@ -7,7 +7,7 @@ from .antlr.HTMLParserVisitor import HTMLParserVisitor
 from .constants import TEMPLATE_SCOPE_OPEN_TAGS, TEMPLATE_SCOPE_CLOSE_OPEN_TAGS
 
 
-class HTMLFormatter(HTMLParserVisitor):
+class HTMLPrinter(HTMLParserVisitor):
     def __init__(self):
         # Settings
         self.indent_str = "  "
@@ -16,6 +16,12 @@ class HTMLFormatter(HTMLParserVisitor):
         # State
         self.indent = 0
         self.current_line_len = 0
+        self.buffer = ""
+
+    def visit(self, node):
+        self.buffer = ""
+        super().visit(node)
+        return self.buffer
 
     def enter_scope(self):
         self.indent += 1
@@ -32,27 +38,30 @@ class HTMLFormatter(HTMLParserVisitor):
         newline) or attempts to continue printing on the current line if the
         content is narrow enough.
         """
+        local_buffer = ""
+
         if (self.current_line_len and is_block) or (
             self.current_line_len + len(content) > self.max_line_len
         ):
             # content requires newline, either because it's a block or because
             # it would overflow the desired line length.
-            print("\n", end="")  # Newline
+            local_buffer += "\n"
             self.current_line_len = 0
 
         if not self.current_line_len:
-            print(f"{self.resolve_indent()}", end="", sep="")
+            local_buffer += f"{self.resolve_indent()}"
         else:
-            print(" ", end="", sep="")
+            local_buffer += " "
+
+        local_buffer += content
 
         if is_block:
-            end = "\n"
+            local_buffer += "\n"
             self.current_line_len = 0
         else:
-            end = ""
             self.current_line_len += len(content)
 
-        print(content, end=end, sep="")
+        self.buffer += local_buffer
 
     def _visit_html_attribute(self, ctx):
         return (
@@ -118,24 +127,19 @@ class HTMLFormatter(HTMLParserVisitor):
             getattr(ctx, content)()
             .getText()
             .replace(f"</{tag_name}>", "")
-            .strip("\n\r")
+            .strip()
             .split("\n")
         ):
-            self.output(line)
+            self.output(line.strip())
         self.exit_scope()
         self.outputClosingTag(ctx, tag_name=tag_name)
 
     # Visitors - all named to match HTMLParserVisitor
     def visitTag(self, ctx):
-        # The enter tag
         self.outputOpeningTag(ctx)
-
-        # print the children - might have none
         self.enter_scope()
         self.visitChildren(ctx)
         self.exit_scope()
-
-        # closing tag
         self.outputClosingTag(ctx)
 
     def visitSelfClosingTag(self, ctx):
@@ -235,3 +239,8 @@ class HTMLFormatter(HTMLParserVisitor):
     def visitTemplateVariable(self, ctx):
         parts = [part.getText() for part in ctx.templateContent()]
         self.output(f"{{{{ {' '.join(parts)} }}}}", is_block=False)
+
+
+def print_to_string(tree):
+    visitor = HTMLPrinter()
+    return visitor.visit(tree)

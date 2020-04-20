@@ -6,19 +6,13 @@ from antlr4 import FileStream, CommonTokenStream
 
 from .antlr.HTMLLexer import HTMLLexer
 from .antlr.HTMLParser import HTMLParser
-from .html_formatter import HTMLFormatter
+from .vsot import format_file
 
 
+@click.command()
 def main():
-    input_stream = FileStream("bbc.html")
-    lexer = HTMLLexer(input_stream)
-    stream = CommonTokenStream(lexer)
-    parser = HTMLParser(stream)
-    tree = parser.htmlDocument()
-
-    # Visitator
-    visitor = HTMLFormatter()
-    visitor.visit(tree)
+    output = format_file("bbc.html")
+    print(output, end="")
 
 
 if __name__ == "__main__":
