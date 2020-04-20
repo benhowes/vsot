@@ -28,7 +28,7 @@ flake8 = "==3.7.9"
 tox = "==3.14.0"
 coverage = "*"
 Sphinx = "==1.8.5"
-pytest = "5"
+pytest = "5.4.1"
 ipdb = "^0.13.2"
 
 
