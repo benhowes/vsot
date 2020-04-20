@@ -14,12 +14,6 @@ HTML formatter
         :alt: Documentation Status
 
 
-.. image:: https://pyup.io/repos/github/benhowes/html_formatter/shield.svg
-     :target: https://pyup.io/repos/github/benhowes/html_formatter/
-     :alt: Updates
-
-
-
 Experimental HTML formatter
 
 
@@ -31,6 +25,39 @@ Features
 --------
 
 * TODO
+
+
+Installation
+------------
+
+Note: Not published yet!
+
+```
+pip install html-formatter
+```
+
+
+Dev Setup
+---------
+
+1. Install antlr 4:
+
+Ubuntu/Debian:
+
+.. code-block:: console
+    sudo apt-get install antlr4
+
+Mac
+.. code-block:: console
+    brew install antlr
+
+2. Install poetry
+
+3. Dev installation
+
+.. code-block:: console
+    poetry install
+
 
 Credits
 -------

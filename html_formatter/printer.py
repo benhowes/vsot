@@ -5,18 +5,21 @@ from typing import Optional
 from .antlr.HTMLParserVisitor import HTMLParserVisitor
 
 from .constants import TEMPLATE_SCOPE_OPEN_TAGS, TEMPLATE_SCOPE_CLOSE_OPEN_TAGS
+from .settings import Settings
 
 
 class HTMLPrinter(HTMLParserVisitor):
-    def __init__(self):
+    def __init__(self, settings: Settings):
         # Settings
-        self.indent_str = "  "
-        self.max_line_len = 88
+        self.indent_str = " " * settings.indent_size
+        self.max_line_len = settings.line_length
+        # Future settings
         self.sort_html_attributes = True
         # State
         self.indent = 0
         self.current_line_len = 0
         self.buffer = ""
+        return super().__init__()
 
     def visit(self, node):
         self.buffer = ""
@@ -241,6 +244,6 @@ class HTMLPrinter(HTMLParserVisitor):
         self.output(f"{{{{ {' '.join(parts)} }}}}", is_block=False)
 
 
-def print_to_string(tree):
-    visitor = HTMLPrinter()
+def print_to_string(tree, settings):
+    visitor = HTMLPrinter(settings)
     return visitor.visit(tree)

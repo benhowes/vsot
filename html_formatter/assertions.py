@@ -5,6 +5,7 @@ from antlr4 import ParserRuleContext
 from .parser import parse_string
 from .printer import print_to_string
 from .utils import diff, dump_to_file
+from .settings import Settings
 
 
 def ast_to_str(tree: ParserRuleContext) -> str:
@@ -29,14 +30,14 @@ def assert_equivalent(src: str, dst: str) -> None:
         )
 
 
-def assert_stable(src: str, dst: str) -> None:
+def assert_stable(src: str, dst: str, settings: Settings) -> None:
     """
     Reformatting formatted code, should produce identical output
 
     Largely borrowed from black
     """
     new_ast = parse_string(dst)
-    new_dst = print_to_string(new_ast)
+    new_dst = print_to_string(new_ast, settings)
 
     if dst != new_dst:
         log = dump_to_file(
