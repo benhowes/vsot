@@ -16,7 +16,7 @@ html-formatter = "html_formatter.cli:main"
 [tool.poetry.dependencies]
 python = ">=3.6.1"
 click = ">=7.0"
-antlr4-python3-runtime = "==4.7.2"
+antlr4-python3-runtime = "==4.8"
 pathspec = "^0.8.0"
 
 [tool.poetry.dev-dependencies]
