@@ -4,9 +4,11 @@ from antlr4 import ParserRuleContext
 
 from .parser import parse_string
 from .printer import print_to_string
+from .utils import diff, dump_to_file
 
 
 def ast_to_str(tree: ParserRuleContext) -> str:
+    """ Antlr4 "lisp" style tree print for comparison. """
     tree.toStringTree(None, tree.parser)
 
 
@@ -45,34 +47,3 @@ def assert_stable(src: str, dst: str) -> None:
             f"INTERNAL ERROR: VSOT produced different markup on the second "
             f"pass of the formatter. See {log} "
         )
-
-
-def diff(a: str, b: str, a_name: str, b_name: str) -> str:
-    """
-    Return a unified diff string between strings `a` and `b`.
-
-    Borrowed from black
-    """
-    import difflib
-
-    a_lines = [line + "\n" for line in a.splitlines()]
-    b_lines = [line + "\n" for line in b.splitlines()]
-    return "".join(
-        difflib.unified_diff(a_lines, b_lines, fromfile=a_name, tofile=b_name, n=5)
-    )
-
-
-def dump_to_file(*output: str) -> str:
-    """
-    Dump `output` to a temporary file. Return path to the file.
-
-    borrowed from black
-    """
-    with tempfile.NamedTemporaryFile(
-        mode="w", prefix="blk_", suffix=".log", delete=False, encoding="utf8"
-    ) as f:
-        for lines in output:
-            f.write(lines)
-            if lines and lines[-1] != "\n":
-                f.write("\n")
-    return f.name
