@@ -33,6 +33,7 @@ Installation
 Note: Not published yet!
 
 .. code-block:: console
+
     pip install vsot
 
 Dev Setup
@@ -48,6 +49,7 @@ Requirements:
 2. Installation
 
 .. code-block:: console
+
     poetry install
 
 
