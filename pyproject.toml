@@ -1,22 +1,22 @@
 [tool]
 [tool.poetry]
-name = "html_formatter"
+name = "vsot"
 version = "0.1.0"
-description = "Experimental HTML formatter"
+description = "VSOT - Django/jinja template formatter"
 license = "MIT license"
-keywords = ["html_formatter"]
+keywords = ["vsot"]
 classifiers = ["Development Status :: 2 - Pre-Alpha", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Natural Language :: English", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.6", "Programming Language :: Python :: 3.7", "Programming Language :: Python :: 3.8"]
-homepage = "https://github.com/benhowes/html_formatter"
+homepage = "https://github.com/benhowes/vsot"
 authors = ["Ben Howes <ben@ben-howes.co.uk>"]
 readme = "README.rst"
 
 [tool.poetry.scripts]
-html-formatter = "html_formatter.cli:main"
+vsot = "vsot.cli:main"
 
 [tool.poetry.dependencies]
 python = ">=3.6.1"
 click = ">=7.0"
-antlr4-python3-runtime = "==4.7.2"
+antlr4-python3-runtime = "==4.8"
 pathspec = "^0.8.0"
 
 [tool.poetry.dev-dependencies]

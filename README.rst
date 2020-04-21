@@ -38,21 +38,14 @@ Note: Not published yet!
 Dev Setup
 ---------
 
-1. Install antlr 4:
+Requirements:
+- Python 3.6 or later
+- Docker
+- Python poetry (see `poetry docs`_)
 
-Ubuntu/Debian:
+1. Clone repo
 
-.. code-block:: console
-    sudo apt-get install antlr4
-
-Mac
-
-.. code-block:: console
-    brew install antlr
-
-2. Install poetry, see `poetry docs`_
-
-3. Dev installation
+2. Installation
 
 .. code-block:: console
     poetry install

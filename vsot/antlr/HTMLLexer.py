@@ -1,8 +1,9 @@
-# Generated from vsot/antlr/HTMLLexer.g4 by ANTLR 4.7.2
+# Generated from /vsot/antlr/HTMLLexer.g4 by ANTLR 4.8
 from antlr4 import *
 from io import StringIO
 from typing.io import TextIO
 import sys
+
 
 
 def serializedATN():
@@ -273,40 +274,40 @@ class HTMLLexer(Lexer):
 
     channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
 
-    modeNames = [ "DEFAULT_MODE", "TEMPLATE_TAG", "TAG", "SCRIPT", "STYLE",
+    modeNames = [ "DEFAULT_MODE", "TEMPLATE_TAG", "TAG", "SCRIPT", "STYLE", 
                   "ATTVALUE" ]
 
     literalNames = [ "<INVALID>",
-            "'{%'", "'{{'", "'{#'", "'#}'", "'<'", "'>'", "'/>'", "'/'",
+            "'{%'", "'{{'", "'{#'", "'#}'", "'<'", "'>'", "'/>'", "'/'", 
             "'='" ]
 
     symbolicNames = [ "<INVALID>",
-            "TEMPLATE_TAG_OPEN", "TEMPLATE_VARIABLE_OPEN", "TEMPLATE_COMMENT_OPEN",
-            "TEMPLATE_COMMENT_CLOSE", "HTML_COMMENT", "HTML_CONDITIONAL_COMMENT",
-            "XML_DECLARATION", "CDATA", "DTD", "SCRIPTLET", "SEA_WS", "SCRIPT_OPEN",
-            "STYLE_OPEN", "TAG_OPEN", "HTML_TEXT", "TEMPLATE_TAG_CLOSE",
-            "TEMPLATE_CONTENT", "TEMPLATE_WS", "TAG_CLOSE", "TAG_SLASH_CLOSE",
-            "TAG_SLASH", "TAG_EQUALS", "TAG_NAME", "TAG_WHITESPACE", "SCRIPT_BODY",
-            "SCRIPT_SHORT_BODY", "STYLE_BODY", "STYLE_SHORT_BODY", "ATTVALUE_VALUE",
+            "TEMPLATE_TAG_OPEN", "TEMPLATE_VARIABLE_OPEN", "TEMPLATE_COMMENT_OPEN", 
+            "TEMPLATE_COMMENT_CLOSE", "HTML_COMMENT", "HTML_CONDITIONAL_COMMENT", 
+            "XML_DECLARATION", "CDATA", "DTD", "SCRIPTLET", "SEA_WS", "SCRIPT_OPEN", 
+            "STYLE_OPEN", "TAG_OPEN", "HTML_TEXT", "TEMPLATE_TAG_CLOSE", 
+            "TEMPLATE_CONTENT", "TEMPLATE_WS", "TAG_CLOSE", "TAG_SLASH_CLOSE", 
+            "TAG_SLASH", "TAG_EQUALS", "TAG_NAME", "TAG_WHITESPACE", "SCRIPT_BODY", 
+            "SCRIPT_SHORT_BODY", "STYLE_BODY", "STYLE_SHORT_BODY", "ATTVALUE_VALUE", 
             "ATTRIBUTE" ]
 
-    ruleNames = [ "TEMPLATE_TAG_OPEN", "TEMPLATE_VARIABLE_OPEN", "TEMPLATE_COMMENT_OPEN",
-                  "TEMPLATE_COMMENT_CLOSE", "HTML_COMMENT", "HTML_CONDITIONAL_COMMENT",
-                  "XML_DECLARATION", "CDATA", "DTD", "SCRIPTLET", "SEA_WS",
-                  "SCRIPT_OPEN", "STYLE_OPEN", "TAG_OPEN", "HTML_TEXT",
-                  "TEMPLATE_TAG_CLOSE", "TEMPLATE_CONTENT", "TEMPLATE_WS",
-                  "TAG_CLOSE", "TAG_SLASH_CLOSE", "TAG_SLASH", "TAG_EQUALS",
-                  "TAG_NAME", "TAG_WHITESPACE", "HEXDIGIT", "DIGIT", "TAG_NameChar",
-                  "TAG_NameStartChar", "SCRIPT_BODY", "SCRIPT_SHORT_BODY",
-                  "STYLE_BODY", "STYLE_SHORT_BODY", "ATTVALUE_VALUE", "ATTRIBUTE",
-                  "ATTCHAR", "ATTCHARS", "HEXCHARS", "DECCHARS", "DOUBLE_QUOTE_STRING",
+    ruleNames = [ "TEMPLATE_TAG_OPEN", "TEMPLATE_VARIABLE_OPEN", "TEMPLATE_COMMENT_OPEN", 
+                  "TEMPLATE_COMMENT_CLOSE", "HTML_COMMENT", "HTML_CONDITIONAL_COMMENT", 
+                  "XML_DECLARATION", "CDATA", "DTD", "SCRIPTLET", "SEA_WS", 
+                  "SCRIPT_OPEN", "STYLE_OPEN", "TAG_OPEN", "HTML_TEXT", 
+                  "TEMPLATE_TAG_CLOSE", "TEMPLATE_CONTENT", "TEMPLATE_WS", 
+                  "TAG_CLOSE", "TAG_SLASH_CLOSE", "TAG_SLASH", "TAG_EQUALS", 
+                  "TAG_NAME", "TAG_WHITESPACE", "HEXDIGIT", "DIGIT", "TAG_NameChar", 
+                  "TAG_NameStartChar", "SCRIPT_BODY", "SCRIPT_SHORT_BODY", 
+                  "STYLE_BODY", "STYLE_SHORT_BODY", "ATTVALUE_VALUE", "ATTRIBUTE", 
+                  "ATTCHAR", "ATTCHARS", "HEXCHARS", "DECCHARS", "DOUBLE_QUOTE_STRING", 
                   "SINGLE_QUOTE_STRING" ]
 
     grammarFileName = "HTMLLexer.g4"
 
     def __init__(self, input=None, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.7.2")
+        self.checkVersion("4.8")
         self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
         self._actions = None
         self._predicates = None

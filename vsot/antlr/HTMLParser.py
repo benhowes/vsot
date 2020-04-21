@@ -1,9 +1,13 @@
-# Generated from vsot/antlr/HTMLParser.g4 by ANTLR 4.7.2
+# Generated from /vsot/antlr/HTMLParser.g4 by ANTLR 4.8
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
-from typing.io import TextIO
 import sys
+if sys.version_info[1] > 5:
+	from typing import TextIO
+else:
+	from typing.io import TextIO
+
 
 def serializedATN():
     with StringIO() as buf:
@@ -120,20 +124,20 @@ class HTMLParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'{%'", "'{{'", "'{#'", "'#}'", "<INVALID>",
-                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>",
-                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>",
-                     "'<'", "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>",
+    literalNames = [ "<INVALID>", "'{%'", "'{{'", "'{#'", "'#}'", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                     "'<'", "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "'>'", "'/>'", "'/'", "'='" ]
 
-    symbolicNames = [ "<INVALID>", "TEMPLATE_TAG_OPEN", "TEMPLATE_VARIABLE_OPEN",
-                      "TEMPLATE_COMMENT_OPEN", "TEMPLATE_COMMENT_CLOSE",
-                      "HTML_COMMENT", "HTML_CONDITIONAL_COMMENT", "XML_DECLARATION",
-                      "CDATA", "DTD", "SCRIPTLET", "SEA_WS", "SCRIPT_OPEN",
-                      "STYLE_OPEN", "TAG_OPEN", "HTML_TEXT", "TEMPLATE_TAG_CLOSE",
-                      "TEMPLATE_CONTENT", "TEMPLATE_WS", "TAG_CLOSE", "TAG_SLASH_CLOSE",
-                      "TAG_SLASH", "TAG_EQUALS", "TAG_NAME", "TAG_WHITESPACE",
-                      "SCRIPT_BODY", "SCRIPT_SHORT_BODY", "STYLE_BODY",
+    symbolicNames = [ "<INVALID>", "TEMPLATE_TAG_OPEN", "TEMPLATE_VARIABLE_OPEN", 
+                      "TEMPLATE_COMMENT_OPEN", "TEMPLATE_COMMENT_CLOSE", 
+                      "HTML_COMMENT", "HTML_CONDITIONAL_COMMENT", "XML_DECLARATION", 
+                      "CDATA", "DTD", "SCRIPTLET", "SEA_WS", "SCRIPT_OPEN", 
+                      "STYLE_OPEN", "TAG_OPEN", "HTML_TEXT", "TEMPLATE_TAG_CLOSE", 
+                      "TEMPLATE_CONTENT", "TEMPLATE_WS", "TAG_CLOSE", "TAG_SLASH_CLOSE", 
+                      "TAG_SLASH", "TAG_EQUALS", "TAG_NAME", "TAG_WHITESPACE", 
+                      "SCRIPT_BODY", "SCRIPT_SHORT_BODY", "STYLE_BODY", 
                       "STYLE_SHORT_BODY", "ATTVALUE_VALUE", "ATTRIBUTE" ]
 
     RULE_templateTag = 0
@@ -160,11 +164,11 @@ class HTMLParser ( Parser ):
     RULE_style = 21
     RULE_styleBody = 22
 
-    ruleNames =  [ "templateTag", "templateComment", "templateVariable",
-                   "templateContent", "htmlDocument", "htmlElements", "htmlElement",
-                   "htmlContent", "htmlAttribute", "htmlAttributeName",
-                   "htmlAttributeValue", "htmlTagName", "htmlChardata",
-                   "htmlMisc", "htmlComment", "xhtmlCDATA", "dtd", "xml",
+    ruleNames =  [ "templateTag", "templateComment", "templateVariable", 
+                   "templateContent", "htmlDocument", "htmlElements", "htmlElement", 
+                   "htmlContent", "htmlAttribute", "htmlAttributeName", 
+                   "htmlAttributeValue", "htmlTagName", "htmlChardata", 
+                   "htmlMisc", "htmlComment", "xhtmlCDATA", "dtd", "xml", 
                    "scriptlet", "script", "scriptBody", "style", "styleBody" ]
 
     EOF = Token.EOF
@@ -201,9 +205,10 @@ class HTMLParser ( Parser ):
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.7.2")
+        self.checkVersion("4.8")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
+
 
 
 
@@ -249,13 +254,13 @@ class HTMLParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 46
             localctx.openTag = self.match(HTMLParser.TEMPLATE_TAG_OPEN)
-            self.state = 48
+            self.state = 48 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 47
                 self.templateContent()
-                self.state = 50
+                self.state = 50 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==HTMLParser.TEMPLATE_CONTENT):
@@ -270,6 +275,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class TemplateCommentContext(ParserRuleContext):
 
@@ -319,6 +325,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class TemplateVariableContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -359,13 +366,13 @@ class HTMLParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 58
             self.match(HTMLParser.TEMPLATE_VARIABLE_OPEN)
-            self.state = 60
+            self.state = 60 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 59
                 self.templateContent()
-                self.state = 62
+                self.state = 62 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==HTMLParser.TEMPLATE_CONTENT):
@@ -380,6 +387,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class TemplateContentContext(ParserRuleContext):
 
@@ -417,6 +425,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class HtmlDocumentContext(ParserRuleContext):
 
@@ -522,7 +531,7 @@ class HTMLParser ( Parser ):
                         pass
                     else:
                         raise NoViableAltException(self)
-
+             
                 self.state = 77
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
@@ -565,7 +574,7 @@ class HTMLParser ( Parser ):
                         pass
                     else:
                         raise NoViableAltException(self)
-
+             
                 self.state = 90
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,6,self._ctx)
@@ -608,7 +617,7 @@ class HTMLParser ( Parser ):
                         pass
                     else:
                         raise NoViableAltException(self)
-
+             
                 self.state = 103
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,9,self._ctx)
@@ -630,6 +639,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class HtmlElementsContext(ParserRuleContext):
 
@@ -685,7 +695,7 @@ class HTMLParser ( Parser ):
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     self.state = 117
-                    self.htmlMisc()
+                    self.htmlMisc() 
                 self.state = 122
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,12,self._ctx)
@@ -698,6 +708,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class HtmlElementContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -708,7 +719,7 @@ class HTMLParser ( Parser ):
         def getRuleIndex(self):
             return HTMLParser.RULE_htmlElement
 
-
+     
         def copyFrom(self, ctx:ParserRuleContext):
             super().copyFrom(ctx)
 
@@ -964,6 +975,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class HtmlContentContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1055,7 +1067,7 @@ class HTMLParser ( Parser ):
                         self.state = 174
                         self.htmlChardata()
 
-
+             
                 self.state = 181
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
@@ -1067,6 +1079,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class HtmlAttributeContext(ParserRuleContext):
 
@@ -1130,6 +1143,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class HtmlAttributeNameContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1166,6 +1180,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class HtmlAttributeValueContext(ParserRuleContext):
 
@@ -1204,6 +1219,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class HtmlTagNameContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1240,6 +1256,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class HtmlChardataContext(ParserRuleContext):
 
@@ -1286,6 +1303,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class HtmlMiscContext(ParserRuleContext):
 
@@ -1341,6 +1359,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class HtmlCommentContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1387,6 +1406,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class XhtmlCDATAContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1423,6 +1443,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class DtdContext(ParserRuleContext):
 
@@ -1461,6 +1482,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class XmlContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1498,6 +1520,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class ScriptletContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1534,6 +1557,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class ScriptContext(ParserRuleContext):
 
@@ -1601,6 +1625,7 @@ class HTMLParser ( Parser ):
             self.exitRule()
         return localctx
 
+
     class ScriptBodyContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
@@ -1646,6 +1671,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class StyleContext(ParserRuleContext):
 
@@ -1712,6 +1738,7 @@ class HTMLParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
+
 
     class StyleBodyContext(ParserRuleContext):
 
