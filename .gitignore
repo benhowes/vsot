@@ -104,6 +104,8 @@ ENV/
 # IDE settings
 .vscode/
 *.sublime-*
+.idea
 
 # Antlr
 .antlr
+gen
