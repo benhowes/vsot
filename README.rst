@@ -1,5 +1,5 @@
 ==============
-HTML formatter
+VSOT - Like black_, but for Django/Jinja2 templates
 ==============
 
 
@@ -9,22 +9,22 @@ HTML formatter
 .. image:: https://img.shields.io/travis/benhowes/html_formatter.svg
         :target: https://travis-ci.com/benhowes/html_formatter
 
-.. image:: https://readthedocs.org/projects/html-formatter/badge/?version=latest
-        :target: https://html-formatter.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
+.. image:: https://img.shields.io/github/license/benhowes/vsot
+        :alt: License - MIT
 
+HTML Template formatter
 
-Experimental HTML formatter
+Use VSOT to automatically format your django templates. No need to manually reflow text or tags when you add/remove content.
 
-
-* Free software: MIT license
-* Documentation: https://html-formatter.readthedocs.io.
+Free software: MIT license
 
 
 Features
 --------
 
-* TODO
+* Mimics black in terms of options and configuration.
+* Automatically supports all built in django/jinja2 tags
+* Safe - VSOT ensures that it does not change the meaning of the templates
 
 
 Installation
@@ -32,10 +32,8 @@ Installation
 
 Note: Not published yet!
 
-```
-pip install html-formatter
-```
-
+.. code-block:: console
+    pip install vsot
 
 Dev Setup
 ---------
@@ -48,10 +46,11 @@ Ubuntu/Debian:
     sudo apt-get install antlr4
 
 Mac
+
 .. code-block:: console
     brew install antlr
 
-2. Install poetry
+2. Install poetry, see `poetry docs`_
 
 3. Dev installation
 
@@ -62,8 +61,13 @@ Mac
 Credits
 -------
 
-- A lot of the code for this was repurposed from black
+- A lot of the code for this was repurposed from black_
+- Antlr4_ is used for the parser, along with using the `HTML parser from the antlr library`_ as a starting point
 - This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+.. _black: https://github.com/psf/black
+.. _`poetry docs`: https://python-poetry.org/docs/#installation
+.. _Antlr4: https://github.com/antlr/antlr4
+.. _`HTML parser from the antlr library`: https://github.com/antlr/grammars-v4
