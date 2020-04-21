@@ -27,3 +27,10 @@ repos:
     entry: poetry run flake8 vsot
     types: [python]
     pass_filenames: false # In order to respect the ignore list
+
+  - id: readme
+    name: readme checker
+    stages: [commit]
+    language: system
+    entry: make release-check
+    files: README.rst
