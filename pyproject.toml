@@ -32,6 +32,7 @@ coverage = "*"
 Sphinx = "==1.8.5"
 pytest = "5.4.1"
 ipdb = "^0.13.2"
+readme_renderer = "^25.0"
 
 
 [tool.black]

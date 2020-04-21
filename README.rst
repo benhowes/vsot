@@ -1,6 +1,6 @@
-==============
+===================================================
 VSOT - Like black_, but for Django/Jinja2 templates
-==============
+===================================================
 
 
 .. image:: https://img.shields.io/pypi/v/vsot.svg
