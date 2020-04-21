@@ -3,11 +3,11 @@ VSOT - Like black_, but for Django/Jinja2 templates
 ==============
 
 
-.. image:: https://img.shields.io/pypi/v/html_formatter.svg
-        :target: https://pypi.python.org/pypi/html_formatter
+.. image:: https://img.shields.io/pypi/v/vsot.svg
+        :target: https://pypi.python.org/pypi/vsot
 
-.. image:: https://img.shields.io/travis/benhowes/html_formatter.svg
-        :target: https://travis-ci.com/benhowes/html_formatter
+.. image:: https://img.shields.io/travis/benhowes/vsot.svg
+        :target: https://travis-ci.com/benhowes/vsot
 
 .. image:: https://img.shields.io/github/license/benhowes/vsot
         :alt: License - MIT
