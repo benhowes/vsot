@@ -12,17 +12,11 @@ install: pip install -U tox-travis poetry
 # Command to run tests, e.g. python setup.py test
 script: tox
 
-# Assuming you have installed the travis-ci CLI tool, after you
-# create the Github repo and add it to Travis, run the
-# following command to finish PyPI deployment setup:
-# $ travis encrypt --add deploy.password
-#deploy:
-#  provider: pypi
-#  distributions: sdist bdist_wheel
-#  user: benhowes
-#  password:
-#    secure: PLEASE_REPLACE_ME
-#  on:
-#    tags: true
-#    repo: benhowes/vsot
-#    python: 3.8
+deploy:
+  - provider: script
+    script: poetry publish --username benhowes --password $PYPI_PASS --build
+    on:
+      repo: benhowes/vsot
+      branch: master
+      python: '3.7'
+      tags: true
