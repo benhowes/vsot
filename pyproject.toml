@@ -18,6 +18,7 @@ python = ">=3.6.1"
 click = ">=7.0"
 antlr4-python3-runtime = "==4.8"
 pathspec = "^0.8.0"
+dataclasses = ">=0.6; python_version < '3.7'"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.2.0"

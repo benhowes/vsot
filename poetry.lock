@@ -152,6 +152,14 @@ python-versions = "*"
 version = "4.4.2"
 
 [[package]]
+category = "main"
+description = "A backport of the dataclasses module for Python 3.6"
+name = "dataclasses"
+optional = false
+python-versions = "*"
+version = "0.6"
+
+[[package]]
 category = "dev"
 description = "Decorators for Humans"
 marker = "python_version >= \"3.4\""
@@ -821,7 +829,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "f2dbeecc0f1842aca970338cc00ed3998684c6238707217403db23cf12699aec"
+content-hash = "1fceb76faf2075e55d4c0fa9228b102ace1b07499329432183aeb9e2d8845460"
 python-versions = ">=3.6.1"
 
 [metadata.files]
@@ -925,6 +933,10 @@ coverage = [
     {file = "coverage-4.4.2.win32-py3.4.exe", hash = "sha256:ab3508df9a92c1d3362343d235420d08e2662969b83134f8a97dc1451cbe5e84"},
     {file = "coverage-4.4.2.win32-py3.5.exe", hash = "sha256:43a155eb76025c61fc20c3d03b89ca28efa6f5be572ab6110b2fb68eda96bfea"},
     {file = "coverage-4.4.2.win32-py3.6.exe", hash = "sha256:f98b461cb59f117887aa634a66022c0bd394278245ed51189f63a036516e32de"},
+]
+dataclasses = [
+    {file = "dataclasses-0.6-py3-none-any.whl", hash = "sha256:454a69d788c7fda44efd71e259be79577822f5e3f53f029a22d08004e951dc9f"},
+    {file = "dataclasses-0.6.tar.gz", hash = "sha256:6988bd2b895eef432d562370bb707d540f32f7360ab13da45340101bc2307d84"},
 ]
 decorator = [
     {file = "decorator-4.4.2-py2.py3-none-any.whl", hash = "sha256:41fa54c2a0cc4ba648be4fd43cff00aedf5b9465c9bf18d64325bc225f08f760"},
