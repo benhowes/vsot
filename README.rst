@@ -30,8 +30,6 @@ Features
 Installation
 ------------
 
-Note: Not published yet!
-
 .. code-block:: console
 
     pip install vsot
