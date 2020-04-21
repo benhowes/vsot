@@ -8,6 +8,8 @@ from pathlib import Path
 
 import click
 
+from .constants import DEFAULT_LINE_LENGTH, DEFAULT_INDENT_SIZE
+
 
 class WriteBack(Enum):
     NO = 0
@@ -32,9 +34,9 @@ class Changed(Enum):
 @dataclass
 class Settings:
     # Setings with defaults
-    line_length: int
-    indent_size: int
-    write_back: WriteBack
+    line_length: int = DEFAULT_LINE_LENGTH
+    indent_size: int = DEFAULT_INDENT_SIZE
+    write_back: WriteBack = WriteBack.YES
 
 
 def find_pyproject_toml(path_search_start: str) -> Optional[str]:

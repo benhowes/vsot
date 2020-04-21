@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-"""Tests for `html_formatter` package."""
+"""Tests for `vsot` package."""
 
 import pytest
 from click.testing import CliRunner
 
-from html_formatter import cli
+from vsot import cli
 
 
 def test_command_line_interface():

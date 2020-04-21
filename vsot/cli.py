@@ -1,4 +1,4 @@
-"""Console script for html_formatter."""
+"""Console script for vsot."""
 from functools import partial
 from pathlib import Path
 import sys
@@ -18,13 +18,15 @@ from .settings import (
     Changed,
     find_project_root,
 )
-from .vsot import format_file_in_place, format_string
+from . import format_file_in_place, format_string
+from .constants import (
+    DEFAULT_LINE_LENGTH,
+    DEFAULT_INDENT_SIZE,
+    DEFAULT_EXCLUDES,
+    DEFAULT_INCLUDES,
+)
 from .utils import Report, gen_html_files_in_dir, get_gitignore
 
-DEFAULT_LINE_LENGTH = 88
-DEFAULT_INDENT_SIZE = 2
-DEFAULT_EXCLUDES = r"/(\.eggs|\.git|\.hg|\.mypy_cache|\.nox|\.tox|\.venv|\.svn|_build|buck-out|build|dist)/"  # noqa: B950
-DEFAULT_INCLUDES = r"/templates/.*?\.html$"
 
 out = partial(click.secho, bold=True, err=True)
 err = partial(click.secho, fg="red", err=True)

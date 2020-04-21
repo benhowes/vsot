@@ -6,7 +6,7 @@ repos:
     name: isort
     stages: [commit]
     language: system
-    entry: poetry run isort html_formatter
+    entry: poetry run isort vsot
     types: [python]
     pass_filenames: false # In order to respect the ignore list
 
@@ -15,7 +15,7 @@ repos:
     name: black
     stages: [commit]
     language: system
-    entry: poetry run black html_formatter
+    entry: poetry run black vsot
     types: [python]
     pass_filenames: false # In order to respect the ignore list
 
@@ -24,6 +24,6 @@ repos:
     name: flake8
     stages: [commit]
     language: system
-    entry: poetry run flake8 html_formatter
+    entry: poetry run flake8 vsot
     types: [python]
     pass_filenames: false # In order to respect the ignore list

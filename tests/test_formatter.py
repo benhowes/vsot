@@ -3,8 +3,9 @@ from typing import List, Tuple
 
 import pytest
 
-from html_formatter.assertions import assert_equivalent, assert_stable
-from html_formatter.vsot import format_string
+from vsot import format_string
+from vsot.assertions import assert_equivalent, assert_stable
+from vsot.settings import Settings
 
 THIS_FILE = Path(__file__)
 THIS_DIR = THIS_FILE.parent
@@ -36,12 +37,17 @@ def read_data(name: str) -> Tuple[str, str]:
     return "".join(_input).strip() + "\n", "".join(_output).strip() + "\n"
 
 
+@pytest.fixture
+def settings():
+    return Settings()
+
+
 @pytest.mark.parametrize("input_name", ["01_general"])
-def test_formatting(input_name):
+def test_formatting(input_name, settings):
 
     src, expected = read_data(input_name)
-    actual = format_string(src)
+    actual = format_string(src, settings)
 
     assert actual == expected
     assert_equivalent(src, actual)
-    assert_stable(src, actual)
+    assert_stable(src, actual, settings)

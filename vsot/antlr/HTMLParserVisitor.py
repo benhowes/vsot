@@ -1,4 +1,4 @@
-# Generated from html_formatter/antlr/HTMLParser.g4 by ANTLR 4.7.2
+# Generated from vsot/antlr/HTMLParser.g4 by ANTLR 4.7.2
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .HTMLParser import HTMLParser

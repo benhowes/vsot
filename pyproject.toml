@@ -47,6 +47,9 @@ exclude = '''
   | build
   | dist
   | setup
-  | html_formatter/antlr
+  | vsot/antlr
 )/
 '''
+
+[tool.vsot]
+indent_size = 2

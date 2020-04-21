@@ -86,4 +86,4 @@ install: clean ## install the package to the active Python's site-packages
 
 
 grammar:
-	antlr4 -Dlanguage=Python3 -no-listener -visitor html_formatter/antlr/HTMLParser.g4 html_formatter/antlr/HTMLLexer.g4
+	antlr4 -Dlanguage=Python3 -no-listener -visitor vsot/antlr/HTMLParser.g4 vsot/antlr/HTMLLexer.g4
