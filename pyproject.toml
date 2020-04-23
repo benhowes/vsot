@@ -31,7 +31,7 @@ tox = "==3.14.6"
 coverage = "*"
 pytest = "5.4.1"
 ipdb = "^0.13.2"
-readme_renderer = "^25.0"
+readme_renderer = "^26.0"
 
 
 [tool.black]
