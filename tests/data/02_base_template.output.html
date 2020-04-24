@@ -1,0 +1,52 @@
+{% extends 'bootstrap.html' %}
+{% load static from staticfiles %}
+{% load bootstrap4 %}
+{% load render_bundle from webpack_loader %}
+{% block bootstrap4_extra_head %}
+  <script src="https://kit.fontawesome.com/6f76c34308.js">
+    
+  </script>
+  <!--<script src="{% static 'css/shards-pro.css' %}"></script>-->
+  {% render_bundle 'site' 'css' %}
+  {% block settings_scripts %}
+  {% endblock %}
+{% endblock %}
+{% block bootstrap4_extra_script %}
+  <script src="{% static 'js/shards-pro.js' %}">
+    
+  </script>
+  {% block extra_script %}
+  {% endblock %}
+{% endblock %}
+{% block bootstrap4_content %}
+  {% include "partials/impersonation_bar.html" %}
+  {#{%include"partials/navbar.html"%}#}
+  <div class="container pt-3" id="narrow-container">
+    <h2>
+      Hedira
+    </h2>
+    <div class="card">
+
+      <img
+        alt="Hedira logo"
+        class="container-img"
+        height="50"
+        src="{% static 'img/logo.png' %}"
+        width="50"
+      />
+      <h1 class="h2">
+        {% block title %}
+          (no title)
+        {% endblock %}
+      </h1>
+      {% autoescape off %}
+        {% bootstrap_messages %}
+      {% endautoescape %}
+      <div class="mt-3">
+        {% block content %}
+          (no content)
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

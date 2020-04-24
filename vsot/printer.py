@@ -35,7 +35,7 @@ class HTMLPrinter(HTMLParserVisitor):
     def resolve_indent(self):
         return self.indent_str * self.indent
 
-    def output(self, content, is_block=True):
+    def output(self, content, is_block=True, needs_newline=False):
         """
         Output printing either prints a block (content starting and ending with a
         newline) or attempts to continue printing on the current line if the
@@ -43,7 +43,9 @@ class HTMLPrinter(HTMLParserVisitor):
         """
         local_buffer = ""
 
-        if (self.current_line_len and is_block) or (
+        if needs_newline and self.buffer[-1] != "\n":
+            local_buffer += "\n"
+        elif (self.current_line_len and is_block) or (
             self.current_line_len + len(content) > self.max_line_len
         ):
             # content requires newline, either because it's a block or because
@@ -233,11 +235,16 @@ class HTMLPrinter(HTMLParserVisitor):
 
     def visitTemplateComment(self, ctx):
         """ In jinja2 these are block comments, in django they are single line """
-        self.output("{#")
-        self.enter_scope()
-        self.visitChildren(ctx)
-        self.exit_scope()
-        self.output("#}")
+        unformatted_contents = ctx.getText()
+        if "\n" in unformatted_contents:  # Assume multi-line comment - i.e. jinja2
+            self.output("{#")
+            self.enter_scope()
+            self.visitChildren(ctx)
+            self.exit_scope()
+            self.output("#}")
+        else:
+            # Single line
+            self.output(unformatted_contents)
 
     def visitTemplateVariable(self, ctx):
         parts = [part.getText() for part in ctx.templateContent()]

@@ -42,7 +42,9 @@ def settings():
     return Settings()
 
 
-@pytest.mark.parametrize("input_name", ["01_general"])
+@pytest.mark.parametrize(
+    "input_name", ["01_general", "02_base_template", "03_jinja_comments"]
+)
 def test_formatting(input_name, settings):
 
     src, expected = read_data(input_name)
