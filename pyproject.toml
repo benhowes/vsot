@@ -21,7 +21,7 @@ pathspec = "^0.8.0"
 dataclasses = { version = ">=0.6", python = "<3.7" }
 
 [tool.poetry.dev-dependencies]
-pre-commit = "^2.2.0"
+pre-commit = "^2.3.0"
 black = "^19.10b0"
 isort = "^4.3.21"
 bump2version = "==1.0.0"
@@ -31,7 +31,7 @@ tox = "==3.14.6"
 coverage = "*"
 pytest = "5.4.1"
 ipdb = "^0.13.2"
-readme_renderer = "^25.0"
+readme_renderer = "^26.0"
 
 
 [tool.black]
