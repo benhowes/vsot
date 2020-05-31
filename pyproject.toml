@@ -29,7 +29,7 @@ watchdog = "==0.10.2"
 flake8 = "==3.7.9"
 tox = "==3.14.6"
 coverage = "*"
-pytest = "5.4.1"
+pytest = "5.4.2"
 ipdb = "^0.13.2"
 readme_renderer = "^26.0"
 
