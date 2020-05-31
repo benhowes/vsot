@@ -1,5 +1,5 @@
 ===================================================
-VSOT - Like black_, but for Django/Jinja2 templates
+(PRE-APLHA) VSOT - Like black_, but for Django/Jinja2 HTML templates
 ===================================================
 
 
@@ -14,7 +14,9 @@ VSOT - Like black_, but for Django/Jinja2 templates
 
 HTML Template formatter
 
-Use VSOT to automatically format your django templates. No need to manually reflow text or tags when you add/remove content.
+Use VSOT to automatically format your django/Jinja2 HTML templates. No need to manually reflow text or tags when you add/remove content.
+
+It has been tested on small files, however there is a lot more to be done an a lot of edge cases which are not handled all that nicely at the moment. Use at your own risk, and only if you have the means to verify the output is correct!
 
 Free software: MIT license
 
