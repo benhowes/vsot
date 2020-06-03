@@ -1,5 +1,5 @@
 ===================================================
-(PRE-APLHA) VSOT - Like black_, but for Django/Jinja2 HTML templates
+(PRE-APLHA, mostly unmaintained) VSOT - Like black_, but for Django/Jinja2 HTML templates
 ===================================================
 
 
