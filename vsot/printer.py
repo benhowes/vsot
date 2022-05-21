@@ -64,7 +64,7 @@ class HTMLPrinter(HTMLParserVisitor):
             local_buffer += "\n"
             self.current_line_len = 0
         else:
-            self.current_line_len += len(content)
+            self.current_line_len += len(local_buffer)
 
         self.buffer += local_buffer
 
