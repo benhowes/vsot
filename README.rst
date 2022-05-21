@@ -1,5 +1,5 @@
 ===================================================
-(PRE-APLHA, mostly unmaintained) VSOT - Like black_, but for Django/Jinja2 HTML templates
+(unmaintained) VSOT - Like black_, but for Django/Jinja2 HTML templates
 ===================================================
 
 
@@ -11,6 +11,10 @@
 
 .. image:: https://img.shields.io/github/license/benhowes/vsot
         :alt: License - MIT
+
+Note: I recommend looking at the following formatters/indenters instead:
+- Full formatting (as VSOT attempts): https://github.com/Riverside-Healthcare/djLint
+- Just indentation: https://github.com/rtts/djhtml
 
 HTML Template formatter
 
