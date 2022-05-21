@@ -13,6 +13,7 @@
         :alt: License - MIT
 
 Note: I recommend looking at the following formatters/indenters instead:
+
 - Full formatting (as VSOT attempts): https://github.com/Riverside-Healthcare/djLint
 - Just indentation: https://github.com/rtts/djhtml
 
